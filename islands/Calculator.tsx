@@ -2,10 +2,10 @@ import { useEffect, useState } from "preact/hooks";
 import { Input } from "../components/Input.tsx";
 
 export const Calculator = () => {
-  const [fixCosts, setFixCosts] = useState(500);
+  const [fixCosts, setFixCosts] = useState(1800);
   const [salaries, setSalaries] = useState<{ a: number; b: number }>({
-    a: 100,
-    b: 100,
+    a: 2634,
+    b: 3069,
   });
   const [result, setResult] = useState<{
     diff: [number, string];
@@ -63,7 +63,7 @@ export const Calculator = () => {
         />
       </div>
       <div class="flex flex flex-col">
-        <label htmlFor="fixCosts">Fix Costs</label>
+        <label htmlFor="fixCosts">Fix Costs = 100%</label>
         <Input
           id="fixCosts"
           type="number"
@@ -74,14 +74,22 @@ export const Calculator = () => {
       <div class="my-8" />
       <code class="text-sm">
         <pre>
-          <span>Diff = {result.diff[0]}</span>
-          <br />
           <span>
-            A {"   "}= {result.fixA[0].toFixed(2)}
+            {"Diff".padEnd(5)}={" "}
+            {Math.abs(fixCosts * result.diff[0])
+              .toFixed(2)
+              .padEnd(6)}{" "}
+            = {(Math.abs(result.diff[0]) * 100).toFixed(2) + "%"}
           </span>
           <br />
           <span>
-            B {"   "}= {result.fixB[0].toFixed(2)}
+            {"A".padEnd(5)}= {result.fixA[0].toFixed(2).padEnd(6)} ={" "}
+            {Math.abs((result.fixA[0] / fixCosts) * 100).toFixed(2) + "%"}
+          </span>
+          <br />
+          <span>
+            {"B".padEnd(5)}= {result.fixB[0].toFixed(2).padEnd(6)} ={" "}
+            {Math.abs((result.fixB[0] / fixCosts) * 100).toFixed(2) + "%"}
           </span>
         </pre>
       </code>
