@@ -2,10 +2,10 @@ import { useEffect, useState } from "preact/hooks";
 import { Input } from "../components/Input.tsx";
 
 export const Calculator = () => {
-  const [fixCosts, setFixCosts] = useState(1800);
+  const [fixCosts, setFixCosts] = useState(150);
   const [salaries, setSalaries] = useState<{ a: number; b: number }>({
-    a: 2634,
-    b: 3069,
+    a: 200,
+    b: 500,
   });
   const [result, setResult] = useState<{
     diff: [number, string];
