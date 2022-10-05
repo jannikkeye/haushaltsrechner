@@ -72,7 +72,7 @@ export const Calculator = () => {
         />
       </div>
       <div class="my-8" />
-      <code class="text-sm">
+      <code class="text-lg">
         <pre>
           <span>
             {"Diff".padEnd(5)}={" "}
