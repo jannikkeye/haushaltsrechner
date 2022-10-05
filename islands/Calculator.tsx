@@ -22,18 +22,18 @@ export const Calculator = () => {
 
     const diff = a > 0 || b > 0 ? (a / b - b / a) * 0.25 : 0;
 
-    const fixA = fixCosts / 2 - (fixCosts / 2) * diff;
-    const fixB = fixCosts / 2 + (fixCosts / 2) * diff;
+    const fixA = fixCosts / 2 + (fixCosts / 2) * diff;
+    const fixB = fixCosts / 2 - (fixCosts / 2) * diff;
 
     setResult({
       diff: [diff, `(${a} / ${b} - ${b} / ${a}) * 0.25`],
       fixA: [
         fixA,
-        `${fixCosts} / 2 - (${fixCosts} / 2) * ${diff.toPrecision(2)}`,
+        `${fixCosts} / 2 + (${fixCosts} / 2) * ${diff.toPrecision(2)}`,
       ],
       fixB: [
         fixB,
-        `${fixCosts} / 2 + (${fixCosts} / 2) * ${diff.toPrecision(2)}`,
+        `${fixCosts} / 2 - (${fixCosts} / 2) * ${diff.toPrecision(2)}`,
       ],
     });
   }, [salaries, fixCosts]);
