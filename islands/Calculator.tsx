@@ -1,6 +1,21 @@
 import { useEffect, useState } from "preact/hooks";
 import { Input } from "../components/Input.tsx";
 
+const formatNumber = (
+  v: number,
+  opts: {
+    abs?: boolean;
+    percent?: boolean;
+  } = {
+    abs: false,
+    percent: false,
+  }
+) => {
+  const temp = opts.abs ? Math.abs(v) : v;
+
+  return temp.toFixed(2) + (opts.percent ? "%" : "");
+};
+
 export const Calculator = () => {
   const [fixCosts, setFixCosts] = useState(150);
   const [salaries, setSalaries] = useState<{ a: number; b: number }>({
@@ -37,6 +52,18 @@ export const Calculator = () => {
       ],
     });
   }, [salaries, fixCosts]);
+
+  const labels = [
+    "50/50",
+    "A",
+    "B",
+    "Abs. Diff",
+    "Diff",
+    "A / Income",
+    "B / Income",
+  ];
+
+  const maxPad = Math.max(...labels.map((d) => d.length)) + 2;
 
   return (
     <div>
@@ -75,24 +102,70 @@ export const Calculator = () => {
       <code class="text-lg">
         <pre>
           <span>
-            {"Diff".padEnd(5)}={" "}
-            {Math.abs(fixCosts * result.diff[0])
-              .toFixed(2)
-              .padEnd(6)}{" "}
-            = {(Math.abs(result.diff[0]) * 100).toFixed(2) + "%"}
+            {labels[0].padEnd(maxPad)}={" "}
+            {formatNumber(fixCosts / 2, { abs: true })}
           </span>
           <br />
           <span>
-            {"A".padEnd(5)}= {result.fixA[0].toFixed(2).padEnd(6)} ={" "}
-            {Math.abs((result.fixA[0] / fixCosts) * 100).toFixed(2) + "%"}
+            {labels[1].padEnd(maxPad)}= {formatNumber(result.fixA[0])} ={" "}
+            {formatNumber((result.fixA[0] / fixCosts) * 100, {
+              percent: true,
+              abs: true,
+            })}
           </span>
           <br />
           <span>
-            {"B".padEnd(5)}= {result.fixB[0].toFixed(2).padEnd(6)} ={" "}
-            {Math.abs((result.fixB[0] / fixCosts) * 100).toFixed(2) + "%"}
+            {labels[2].padEnd(maxPad)}= {formatNumber(result.fixB[0])} ={" "}
+            {formatNumber((result.fixB[0] / fixCosts) * 100, {
+              percent: true,
+              abs: true,
+            })}
+          </span>
+          <br />
+          <span>
+            {labels[3].padEnd(maxPad)}={" "}
+            {formatNumber(fixCosts * result.diff[0], { abs: true })} ={" "}
+            {formatNumber(result.diff[0] * 100, { abs: true, percent: true })}
+          </span>
+          <br />
+          <span>
+            {labels[4].padEnd(maxPad)}={" "}
+            {formatNumber((fixCosts * result.diff[0]) / 2, { abs: true })} ={" "}
+            {formatNumber((result.diff[0] * 100) / 2, {
+              percent: true,
+              abs: true,
+            })}
+          </span>
+          <br />
+          <span>
+            {labels[5].padEnd(maxPad)}={" "}
+            {formatNumber((result.fixA[0] / salaries.a) * 100, {
+              abs: true,
+              percent: true,
+            })}
+          </span>
+          <br />
+          <span>
+            {labels[6].padEnd(maxPad)}={" "}
+            {formatNumber((result.fixB[0] / salaries.b) * 100, {
+              abs: true,
+              percent: true,
+            })}
           </span>
         </pre>
       </code>
+      <br />
+
+      <div class="text-blue-500 text-xs flex flex-col gap-2">
+        <h3 class="text-underline mb-2">Help</h3>
+        <p>50/50 = Total Fix Costs divided by 2.</p>
+        <p>A = Pro rata cost of A.</p>
+        <p>B = Pro rata cost of B.</p>
+        <p>Abs. Diff = Total difference between pro ratas.</p>
+        <p>Diff = Actual difference between pro ratas.</p>
+        <p>A / Income = Percentage A of A Salary</p>
+        <p>B / Income = Percentage B of B Salary</p>
+      </div>
     </div>
   );
 };
