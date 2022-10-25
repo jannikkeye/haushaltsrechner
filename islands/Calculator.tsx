@@ -53,15 +53,7 @@ export const Calculator = () => {
     });
   }, [salaries, fixCosts]);
 
-  const labels = [
-    "50/50",
-    "A",
-    "B",
-    "Abs. Diff",
-    "Diff",
-    "A / Income",
-    "B / Income",
-  ];
+  const labels = ["FC/2", "A", "B", "Abs. Diff", "Diff", "A / FC", "B / FC"];
 
   const maxPad = Math.max(...labels.map((d) => d.length)) + 2;
 
@@ -90,7 +82,7 @@ export const Calculator = () => {
         />
       </div>
       <div class="flex flex flex-col">
-        <label htmlFor="fixCosts">Fix Costs = 100%</label>
+        <label htmlFor="fixCosts">Fix Costs (FC)</label>
         <Input
           id="fixCosts"
           type="number"
@@ -106,7 +98,7 @@ export const Calculator = () => {
             {formatNumber(fixCosts / 2, { abs: true })}
           </span>
           <br />
-          <span>
+          <span class="font-bold text-green-500">
             {labels[1].padEnd(maxPad)}= {formatNumber(result.fixA[0])} ={" "}
             {formatNumber((result.fixA[0] / fixCosts) * 100, {
               percent: true,
@@ -114,7 +106,7 @@ export const Calculator = () => {
             })}
           </span>
           <br />
-          <span>
+          <span class="font-bold text-green-500">
             {labels[2].padEnd(maxPad)}= {formatNumber(result.fixB[0])} ={" "}
             {formatNumber((result.fixB[0] / fixCosts) * 100, {
               percent: true,
