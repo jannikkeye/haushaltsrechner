@@ -53,14 +53,22 @@ export const Calculator = () => {
     });
   }, [salaries, fixCosts]);
 
-  const labels = ["FC/2", "A", "B", "Abs. Diff", "Diff", "A / FC", "B / FC"];
+  const labels = [
+    "FC/2",
+    "A2",
+    "B2",
+    "Abs. Diff",
+    "Diff",
+    "A2 / A1",
+    "B2 / B1",
+  ];
 
   const maxPad = Math.max(...labels.map((d) => d.length)) + 2;
 
   return (
     <div>
       <div class="flex flex-1 flex-col mb-4">
-        <label htmlFor="salaryA">A</label>
+        <label htmlFor="salaryA">A1</label>
         <Input
           id="salaryA"
           type="number"
@@ -71,7 +79,7 @@ export const Calculator = () => {
         />
       </div>
       <div class="flex flex-1 flex-col mb-4">
-        <label htmlFor="salaryB">B</label>
+        <label htmlFor="salaryB">B1</label>
         <Input
           id="salaryB"
           type="number"
@@ -150,13 +158,16 @@ export const Calculator = () => {
 
       <div class="text-blue-500 text-xs flex flex-col gap-2">
         <h3 class="text-underline mb-2">Help</h3>
-        <p>50/50 = Total Fix Costs divided by 2.</p>
-        <p>A = Pro rata cost of A.</p>
-        <p>B = Pro rata cost of B.</p>
-        <p>Abs. Diff = Total difference between pro ratas.</p>
-        <p>Diff = Actual difference between pro ratas.</p>
-        <p>A / Income = Percentage A of A Salary</p>
-        <p>B / Income = Percentage B of B Salary</p>
+        <p>A1 = Available funds for A</p>
+        <p>B1 = Available funds for B</p>
+        <p>Fix Costs (FC) = Total costs</p>
+        <p>50/50 = Total Fix Costs divided by 2</p>
+        <p>A2 = Pro rata cost of A</p>
+        <p>B2 = Pro rata cost of B</p>
+        <p>Abs. Diff = Total difference between pro ratas</p>
+        <p>Diff = Actual difference between pro ratas</p>
+        <p>A2 / A1 = Percentage A1 of A2</p>
+        <p>B2 / B1 = Percentage B1 of B2</p>
       </div>
     </div>
   );
