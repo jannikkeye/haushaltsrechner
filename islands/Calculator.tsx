@@ -71,7 +71,7 @@ export const Calculator = () => {
     fixB: [0, ""],
   });
 
-  const [calculationFn, setCalculationFn] = useState("standard");
+  const [calculationFn, setCalculationFn] = useState("balanced");
 
   useEffect(() => {
     const { a, b } = salaries;
