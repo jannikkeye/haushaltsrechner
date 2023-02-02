@@ -124,8 +124,8 @@ export const Calculator = () => {
   return (
     <div>
       <div class="w-full flex justify-between">
-        <label>Berechnung:</label>
-        <select
+        {/* <label>Berechnung:</label> */}
+        {/* <select
           onChange={(e) => {
             const value = e.target?.value;
 
@@ -135,9 +135,9 @@ export const Calculator = () => {
           <option value="standard">Ausgleichend</option>
           <option value="balanced">Balancierend</option>
           <option value="minmaxed">Keine Negativen</option>
-        </select>
+        </select> */}
       </div>
-      <hr class="my-4" />
+      {/* <hr class="my-4" /> */}
       <div class="flex flex-1 flex-col mb-4">
         <label htmlFor="salaryA">A1</label>
         <Input
