@@ -126,6 +126,7 @@ export const Calculator = () => {
       <div class="w-full flex justify-between">
         <label>Berechnung:</label>
         <select
+          value={calculationFn}
           onChange={(e) => {
             const value = (e.target as any)?.value;
 
