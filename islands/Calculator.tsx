@@ -9,7 +9,7 @@ const formatNumber = (
   } = {
     abs: false,
     percent: false,
-  }
+  },
 ) => {
   const temp = opts.abs ? Math.abs(v) : v;
 
@@ -125,7 +125,8 @@ export const Calculator = () => {
     <div>
       <div class="w-full flex justify-between">
         {/* <label>Berechnung:</label> */}
-        {/* <select
+        {
+          /* <select
           onChange={(e) => {
             const value = e.target?.value;
 
@@ -135,7 +136,8 @@ export const Calculator = () => {
           <option value="standard">Ausgleichend</option>
           <option value="balanced">Balancierend</option>
           <option value="minmaxed">Keine Negativen</option>
-        </select> */}
+        </select> */
+        }
       </div>
       {/* <hr class="my-4" /> */}
       <div class="flex flex-1 flex-col mb-4">
@@ -145,8 +147,7 @@ export const Calculator = () => {
           type="number"
           value={salaries.a}
           onInput={(e) =>
-            setSalaries({ ...salaries, a: parseInt((e.target as any).value) })
-          }
+            setSalaries({ ...salaries, a: parseInt((e.target as any).value) })}
         />
       </div>
       <div class="flex flex-1 flex-col mb-4">
@@ -156,8 +157,7 @@ export const Calculator = () => {
           type="number"
           value={salaries.b}
           onInput={(e) =>
-            setSalaries({ ...salaries, b: parseInt((e.target as any).value) })
-          }
+            setSalaries({ ...salaries, b: parseInt((e.target as any).value) })}
         />
       </div>
       <div class="flex flex flex-col">
@@ -237,8 +237,8 @@ export const Calculator = () => {
         <p>B2 = Pro rata cost of B</p>
         <p>Abs. Diff = Total difference between pro ratas</p>
         <p>Diff = Actual difference between pro ratas</p>
-        <p>A2 / A1 = Percentage A1 of A2</p>
-        <p>B2 / B1 = Percentage B1 of B2</p>
+        <p>A2 / A1 = Percentage A2 of A1</p>
+        <p>B2 / B1 = Percentage B2 of B1</p>
       </div>
     </div>
   );
